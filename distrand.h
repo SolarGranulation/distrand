@@ -2,6 +2,8 @@
 #ifndef DISTRAND_H
 #define DISTRAND_H
 
+#include <cstdlib>
+#include <cmath>
 #include "reference.h"
 
 class DistRand : public Reference {
