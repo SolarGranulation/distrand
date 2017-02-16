@@ -2,8 +2,13 @@
 #ifndef DISTRAND_H
 #define DISTRAND_H
 
+#ifdef __ANDROID__
+#include <stdlib.h>
+//cmath???
+#else
 #include <cstdlib>
 #include <cmath>
+#endif
 #include "reference.h"
 
 class DistRand : public Reference {
