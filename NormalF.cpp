@@ -2,15 +2,15 @@
 
 #include "NormalF.h"
 
-void NormalF::_bind_methods() {
-	ObjectTypeDB::bind_method("normal",&NormalF::normal);
+void RealNormal::_bind_methods() {
+	ObjectTypeDB::bind_method("normal",&RealNormal::normal);
 // 	ObjectTypeDB::bind_method("skew",&NormalF::skew);
-	ObjectTypeDB::bind_method("generate",&NormalF::generate);
-	ObjectTypeDB::bind_method("getvalue",&NormalF::getvalue);
-	ObjectTypeDB::bind_method("getnext",&NormalF::getnext);
+	ObjectTypeDB::bind_method("generate",&RealNormal::generate);
+	ObjectTypeDB::bind_method("getvalue",&RealNormal::getvalue);
+	ObjectTypeDB::bind_method("getnext",&RealNormal::getnext);
 }
 
-float NormalF::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu = mean, sigma = standard deviation
+template <typename T, class C> float NormalF<T, C>::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu = mean, sigma = standard deviation
 	float epsilon = (float)0; // Hoping this will sort out any rounding error
 	static float Zu, Zv; // The two deviates
 	float U, V, s, R, Q; // Two random numbers (U & V), the sum of their cubes (s), the root of that (R) and, well, R.
@@ -50,7 +50,7 @@ float NormalF::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu =
 	return Zu * sigma + mu; // Otherwise return here
 }
 
-void NormalF::normal(float mean, float deviation) {
+template <typename T, class C> void NormalF<T, C>::normal(T mean, T deviation) {
 	if(deviation > 0) {
 		mu = mean;
 		sigma = deviation;
@@ -58,22 +58,22 @@ void NormalF::normal(float mean, float deviation) {
 	}
 }
 
-void NormalF::skew(float factor) {
+template <typename T, class C> void NormalF<T, C>::skew(float factor) {
 	// TODO
 }
 
-void NormalF::generate(int quantity) {
+template <typename T, class C> void NormalF<T, C>::generate(int quantity) {
 	if(sigma > 0) {
 		// TODO Seed, if not using an idiom.
 
 		contents.resize(0);
 		for(int i=0; i<quantity; ++i) {
-			contents.push_back(dr_boxmuller(mu, sigma));
+			contents.push_back((T)dr_boxmuller((float)mu, (float)sigma));
 		}
 	}
 }
 
-float NormalF::getvalue(int i) {
+template <typename T, class C> T NormalF<T, C>::getvalue(int i) {
 	if(i < contents.size()) {
 		bookmark = i;
 		return contents[bookmark];
@@ -82,7 +82,7 @@ float NormalF::getvalue(int i) {
 	ERR_FAIL_COND_V(i >= contents.size(), 0.0)
 }
 
-float NormalF::getnext() {
+template <typename T, class C> T NormalF<T, C>::getnext() {
 	int i = bookmark + 1;
 
 	if(i < contents.size()) {
@@ -93,6 +93,6 @@ float NormalF::getnext() {
 	ERR_FAIL_COND_V("Out of bounds", 0.0)
 }
 
-NormalF::NormalF() {
+template <typename T, class C> NormalF<T, C>::NormalF() {
 	
 }

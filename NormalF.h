@@ -11,27 +11,36 @@
 #endif
 #include "reference.h"
 
-class NormalF : public Reference {
-	OBJ_TYPE(NormalF,Reference);
+template <typename T, class C>
+class NormalF /*: public Reference*/ {
+	//OBJ_TYPE(NormalF,Reference);
 
+protected:
 	int bookmark;
-	float mu, sigma;
-	RealArray contents;
+	T mu, sigma;
+	C contents;
 	
 	float dr_boxmuller(const float, const float);
 	
-protected:
-	static void _bind_methods();
+// protected:
+// 	static void _bind_methods();
 
 public:
-	void normal(float, float);
+	void normal(T mean, T deviation);
 	void skew(float);
 	void generate(int);
 
-	float getvalue(int);
-	float getnext();
+	T getvalue(int);
+	T getnext();
 
 	NormalF();
+};
+
+class RealNormal : public Reference, public NormalF<float, RealArray> {
+	OBJ_TYPE(RealNormal,Reference);
+	
+protected:
+	static void _bind_methods();
 };
 
 #endif

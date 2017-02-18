@@ -5,7 +5,7 @@
 #include "NormalF.h"
 
 void register_distrand_types() {
-	ObjectTypeDB::register_type<NormalF>();
+	ObjectTypeDB::register_type<RealNormal>();
 }
 
 void unregister_distrand_types() {
