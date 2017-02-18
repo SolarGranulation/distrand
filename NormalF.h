@@ -15,6 +15,7 @@ class NormalF : public Reference {
 	OBJ_TYPE(NormalF,Reference);
 
 	int bookmark;
+	float mu, sigma;
 	RealArray contents;
 	
 	float dr_boxmuller(const float, const float);
@@ -23,7 +24,9 @@ protected:
 	static void _bind_methods();
 
 public:
-	void normal(int, float, float);
+	void normal(float, float);
+	void skew(float);
+	void generate(int);
 
 	float getvalue(int);
 	float getnext();
