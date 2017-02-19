@@ -10,14 +10,15 @@ template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const T mu, 
 	
 	int control = (rand());
 	negative = ((control & 1<<0) == 1); // See if our new random int is odd
+	// Seems biased.
 	
 	generate = !generate; // Generate two at a time, so only do it every other time.
 	
 	if(!generate) { // So if we're not generating a number this time
 		if(negative) { // and we want a negative (half the time)
-			return 0 - Zv * (float)(sigma + mu);
+			return (float)mu - Zv * (float)sigma;
 		} else { // or a positive (half the time)
-			return Zv * (float)(sigma + mu);
+			return (float)mu + Zv * (float)sigma;
 		}
 	}
 	
@@ -37,10 +38,10 @@ template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const T mu, 
 	Zv = (V/R)*Q;
 	
 	if(negative) { // If we want a negative value, return here
-		return 0 - Zu * (float)(sigma + mu);
+		return (float)mu - Zu * (float)sigma;
 	}
 	
-	return Zu * (float)(sigma + mu); // Otherwise return here
+	return (float)mu + Zu * (float)sigma; // Otherwise return here
 }
 
 template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation) {
