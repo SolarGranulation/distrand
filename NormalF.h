@@ -12,8 +12,8 @@
 #include "reference.h"
 
 template <typename T, class C>
-class NormalF /*: public Reference*/ {
-	//OBJ_TYPE(NormalF,Reference);
+class NormalF : public Reference {
+	OBJ_TYPE(NormalF,Reference);
 
 protected:
 	int bookmark;
@@ -36,11 +36,28 @@ public:
 	NormalF();
 };
 
-class RealNormal : public Reference, public NormalF<float, RealArray> {
+class RealNormal : /*public Reference, */public NormalF<float, RealArray> {
 	OBJ_TYPE(RealNormal,Reference);
 	
 protected:
 	static void _bind_methods();
+	
+	using NormalF<float, RealArray>::dr_boxmuller;
+	
+public:
+// 	using NormalF<float, RealArray>::normal;
+// 	using NormalF<float, RealArray>::skew;
+// 	using NormalF<float, RealArray>::generate;
+// 	using NormalF<float, RealArray>::getvalue;
+// 	using NormalF<float, RealArray>::getnext;
+	void normal(float mean, float deviation) {NormalF<float, RealArray>::normal(mean, deviation);};
+	void skew(float factor) {NormalF<float, RealArray>::skew(factor);};
+	void generate(int count) {NormalF<float, RealArray>::generate(count);};
+	
+	float getvalue(int i) {return NormalF<float, RealArray>::getvalue(i);};
+	float getnext() {return NormalF<float, RealArray>::getnext();};
+	
+	RealNormal(){};
 };
 
 #endif

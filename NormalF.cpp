@@ -96,3 +96,5 @@ template <typename T, class C> T NormalF<T, C>::getnext() {
 template <typename T, class C> NormalF<T, C>::NormalF() {
 	
 }
+
+template class NormalF<float, RealArray>;
