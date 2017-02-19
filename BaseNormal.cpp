@@ -2,14 +2,14 @@
 
 #include "BaseNormal.h"
 
-template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu = mean, sigma = standard deviation
-	float epsilon = (float)0; // Hoping this will sort out any rounding error
-	static float Zu, Zv; // The two deviates
+template <typename T, class C> T BaseNormal<T, C>::dr_boxmuller(const T mu, const T sigma) { // mu = mean, sigma = standard deviation
+	T epsilon = 0; // Hoping this will sort out any rounding error
+	static T Zu, Zv; // The two deviates
 	float U, V, s, R, Q; // Two random numbers (U & V), the sum of their cubes (s), the root of that (R) and Q which is the square root of the natural log of s multiplied by negative two.
 	static bool generate, negative; // These two bools control function behaviour.
 	
 	int control = (rand());
-	negative = (bool)control & 1<<0; // See if our new random int is odd
+	negative = ((control & 1<<0) == 1); // See if our new random int is odd
 	
 	generate = !generate; // Generate two at a time, so only do it every other time.
 	
@@ -32,8 +32,9 @@ template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const float 
 	Q = sqrt(-2*log(s));
 	
 	// Calculate both variates. Common terms became variables to, again, save a miniscule bit of runtime
-	Zu = (U/R)*Q;
-	Zv = (V/R)*Q;
+	// Cast to typename T
+	Zu = (T)(U/R)*Q;
+	Zv = (T)(V/R)*Q;
 	
 	if(negative) { // If we want a negative value, return here
 		return 0 - Zu * sigma + mu;
@@ -50,17 +51,13 @@ template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation
 	}
 }
 
-template <typename T, class C> void BaseNormal<T, C>::skew(float factor) {
-	// TODO
-}
-
 template <typename T, class C> void BaseNormal<T, C>::generate(int quantity) {
 	if(sigma > 0) {
 		// TODO Seed, if not using an idiom.
 
 		contents.resize(0);
 		for(int i=0; i<quantity; ++i) {
-			contents.push_back((T)dr_boxmuller((float)mu, (float)sigma));
+			contents.push_back(dr_boxmuller(mu, sigma));
 		}
 	}
 }
@@ -89,4 +86,6 @@ template <typename T, class C> BaseNormal<T, C>::BaseNormal() {
 	
 }
 
-template class BaseNormal<float, RealArray>; // Explicitly create variates to avoid "undefined reference" errors.
+// Explicitly create variates to avoid "undefined reference" errors.
+template class BaseNormal<float, RealArray>;
+template class BaseNormal<int, IntArray>;

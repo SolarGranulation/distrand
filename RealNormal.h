@@ -15,9 +15,7 @@ protected:
 public:
 // 	In order to work in gdscript it seems that these must be explicitly written.
 	void normal(float mean, float deviation) {BaseNormal<float, RealArray>::normal(mean, deviation);};
-	void skew(float factor) {BaseNormal<float, RealArray>::skew(factor);};
 	void generate(int count) {BaseNormal<float, RealArray>::generate(count);};
-	
 	float getvalue(int i) {return BaseNormal<float, RealArray>::getvalue(i);};
 	float getnext() {return BaseNormal<float, RealArray>::getnext();};
 	

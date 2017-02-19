@@ -4,10 +4,8 @@
 
 #ifdef __ANDROID__
 #include <stdlib.h>
-//cmath???
 #else
 #include <cstdlib>
-#include <cmath>
 #endif
 #include "reference.h"
 
@@ -20,11 +18,10 @@ protected:
 	T mu, sigma;
 	C contents;
 	
-	float dr_boxmuller(const float, const float);
+	T dr_boxmuller(const T mu, const T sigma);
 
 public:
 	void normal(T mean, T deviation);
-	void skew(float);
 	void generate(int);
 
 	T getvalue(int);
