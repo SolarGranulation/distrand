@@ -2,7 +2,7 @@
 
 #include "register_types.h"
 #include "object_type_db.h"
-#include "NormalF.h" // Should rename this
+#include "RealNormal.h"
 
 void register_distrand_types() {
 	ObjectTypeDB::register_type<RealNormal>();

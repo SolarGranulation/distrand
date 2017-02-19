@@ -1,19 +1,11 @@
-/* NormalF.cpp */
+/* BaseNormal.cpp */
 
-#include "NormalF.h"
+#include "BaseNormal.h"
 
-void RealNormal::_bind_methods() {
-	ObjectTypeDB::bind_method("normal",&RealNormal::normal);
-// 	ObjectTypeDB::bind_method("skew",&NormalF::skew);
-	ObjectTypeDB::bind_method("generate",&RealNormal::generate);
-	ObjectTypeDB::bind_method("getvalue",&RealNormal::getvalue);
-	ObjectTypeDB::bind_method("getnext",&RealNormal::getnext);
-}
-
-template <typename T, class C> float NormalF<T, C>::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu = mean, sigma = standard deviation
+template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const float mu=0.0, const float sigma=1.0) { // mu = mean, sigma = standard deviation
 	float epsilon = (float)0; // Hoping this will sort out any rounding error
 	static float Zu, Zv; // The two deviates
-	float U, V, s, R, Q; // Two random numbers (U & V), the sum of their cubes (s), the root of that (R) and, well, R.
+	float U, V, s, R, Q; // Two random numbers (U & V), the sum of their cubes (s), the root of that (R) and Q which is the square root of the natural log of s multiplied by negative two.
 	static bool generate, negative; // These two bools control function behaviour.
 	
 	int control = (rand());
@@ -50,7 +42,7 @@ template <typename T, class C> float NormalF<T, C>::dr_boxmuller(const float mu=
 	return Zu * sigma + mu; // Otherwise return here
 }
 
-template <typename T, class C> void NormalF<T, C>::normal(T mean, T deviation) {
+template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation) {
 	if(deviation > 0) {
 		mu = mean;
 		sigma = deviation;
@@ -58,11 +50,11 @@ template <typename T, class C> void NormalF<T, C>::normal(T mean, T deviation) {
 	}
 }
 
-template <typename T, class C> void NormalF<T, C>::skew(float factor) {
+template <typename T, class C> void BaseNormal<T, C>::skew(float factor) {
 	// TODO
 }
 
-template <typename T, class C> void NormalF<T, C>::generate(int quantity) {
+template <typename T, class C> void BaseNormal<T, C>::generate(int quantity) {
 	if(sigma > 0) {
 		// TODO Seed, if not using an idiom.
 
@@ -73,7 +65,7 @@ template <typename T, class C> void NormalF<T, C>::generate(int quantity) {
 	}
 }
 
-template <typename T, class C> T NormalF<T, C>::getvalue(int i) {
+template <typename T, class C> T BaseNormal<T, C>::getvalue(int i) {
 	if(i < contents.size()) {
 		bookmark = i;
 		return contents[bookmark];
@@ -82,7 +74,7 @@ template <typename T, class C> T NormalF<T, C>::getvalue(int i) {
 	ERR_FAIL_COND_V(i >= contents.size(), 0.0)
 }
 
-template <typename T, class C> T NormalF<T, C>::getnext() {
+template <typename T, class C> T BaseNormal<T, C>::getnext() {
 	int i = bookmark + 1;
 
 	if(i < contents.size()) {
@@ -93,8 +85,8 @@ template <typename T, class C> T NormalF<T, C>::getnext() {
 	ERR_FAIL_COND_V("Out of bounds", 0.0)
 }
 
-template <typename T, class C> NormalF<T, C>::NormalF() {
+template <typename T, class C> BaseNormal<T, C>::BaseNormal() {
 	
 }
 
-template class NormalF<float, RealArray>;
+template class BaseNormal<float, RealArray>; // Explicitly create variates to avoid "undefined reference" errors.
