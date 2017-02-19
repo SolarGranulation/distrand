@@ -18,7 +18,7 @@ protected:
 	T mu, sigma;
 	C contents;
 	
-	T dr_boxmuller(const T mu, const T sigma);
+	float dr_boxmuller(const T mu, const T sigma);
 
 public:
 	void normal(T mean, T deviation);

@@ -2,9 +2,9 @@
 
 #include "BaseNormal.h"
 
-template <typename T, class C> T BaseNormal<T, C>::dr_boxmuller(const T mu, const T sigma) { // mu = mean, sigma = standard deviation
-	T epsilon = 0; // Hoping this will sort out any rounding error
-	static T Zu, Zv; // The two deviates
+template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const T mu, const T sigma) { // mu = mean, sigma = standard deviation
+	float epsilon = 0; // Hoping this will sort out any rounding error
+	static float Zu, Zv; // The two deviates
 	float U, V, s, R, Q; // Two random numbers (U & V), the sum of their cubes (s), the root of that (R) and Q which is the square root of the natural log of s multiplied by negative two.
 	static bool generate, negative; // These two bools control function behaviour.
 	
@@ -15,9 +15,9 @@ template <typename T, class C> T BaseNormal<T, C>::dr_boxmuller(const T mu, cons
 	
 	if(!generate) { // So if we're not generating a number this time
 		if(negative) { // and we want a negative (half the time)
-			return 0 - Zv * sigma + mu;
+			return 0 - Zv * (float)(sigma + mu);
 		} else { // or a positive (half the time)
-			return Zv * sigma + mu;
+			return Zv * (float)(sigma + mu);
 		}
 	}
 	
@@ -33,14 +33,14 @@ template <typename T, class C> T BaseNormal<T, C>::dr_boxmuller(const T mu, cons
 	
 	// Calculate both variates. Common terms became variables to, again, save a miniscule bit of runtime
 	// Cast to typename T
-	Zu = (T)(U/R)*Q;
-	Zv = (T)(V/R)*Q;
+	Zu = (U/R)*Q;
+	Zv = (V/R)*Q;
 	
 	if(negative) { // If we want a negative value, return here
-		return 0 - Zu * sigma + mu;
+		return 0 - Zu * (float)(sigma + mu);
 	}
 	
-	return Zu * sigma + mu; // Otherwise return here
+	return Zu * (float)(sigma + mu); // Otherwise return here
 }
 
 template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation) {
