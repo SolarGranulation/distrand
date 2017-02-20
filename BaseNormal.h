@@ -8,6 +8,7 @@
 #include <cstdlib>
 #endif
 #include "reference.h"
+#include "math_funcs.h" // Godot mathematical functions, including randf.
 
 template <typename T, class C>
 class BaseNormal : public Reference {

@@ -23,8 +23,8 @@ template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const T mu, 
 	}
 	
 	do {	// Generate the random values
-		U = rand() * (1.0 / RAND_MAX); // May replace these with a godot-idiom if such exists
-		V = rand() * (1.0 / RAND_MAX);
+		U = Math::randf(); // Godot idiom.
+		V = Math::randf();
 		s = (U*U + V*V); // This one is calculated here because it controls the loop
 	} while(s <= epsilon || s >= 1);
 	
@@ -54,8 +54,6 @@ template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation
 
 template <typename T, class C> void BaseNormal<T, C>::generate(int quantity) {
 	if(sigma > 0) {
-		// TODO Seed, if not using an idiom.
-
 		contents.resize(0);
 		for(int i=0; i<quantity; ++i) {
 			contents.push_back(dr_boxmuller(mu, sigma));
@@ -84,7 +82,10 @@ template <typename T, class C> T BaseNormal<T, C>::getnext() {
 }
 
 template <typename T, class C> BaseNormal<T, C>::BaseNormal() {
-	
+	Math::randomize();
+	bookmark = 0;
+	mu = 0;
+	sigma = 1;
 }
 
 // Explicitly create variates to avoid "undefined reference" errors.
