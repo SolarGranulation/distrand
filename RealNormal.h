@@ -19,7 +19,7 @@ public:
 	float getvalue(int i) {return BaseNormal<float, RealArray>::getvalue(i);};
 	float getnext() {return BaseNormal<float, RealArray>::getnext();};
 	
-	RealNormal(){};
+	RealNormal() : BaseNormal() {};
 };
 
 #endif

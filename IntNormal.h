@@ -16,11 +16,11 @@ protected:
 public:
 // 	In order to work in gdscript it seems that these must be explicitly written.
 	void normal(int mean, int deviation) {BaseNormal<int, IntArray>::normal(mean, deviation);};
-	void generate(int count); // IntNormal has its own needs here
+	void generate(int count); // IntNormal needs to round the boxmuller result.
 	int getvalue(int i) {return BaseNormal<int, IntArray>::getvalue(i);};
 	int getnext() {return BaseNormal<int, IntArray>::getnext();};
 	
-	IntNormal(){};
+	IntNormal() : BaseNormal() {};
 };
 
 #endif
