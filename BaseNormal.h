@@ -1,11 +1,11 @@
 /* BaseNormal.h */
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//							This file is part of:
+//                         This file is part of:
 //
-//								  distrand
+//                               distrand
 //
-//							Which is a module for
-//							use with Godot Engine
+//                         Which is a module for
+//                         use with Godot Engine
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 //
 // distrand
