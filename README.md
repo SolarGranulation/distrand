@@ -17,6 +17,7 @@ Currently distrand exposes two object classes, RealNormal and IntNormal. Both
 create normal (or Gaussian) distributions of random numbers.
 
 **RealNormal** generates random value floats and holds them in a RealArray.
+
 **IntNormal** generates random value integers and holds them in an IntArray.
 
 #### Public Methods ####
@@ -58,10 +59,12 @@ RealNormal and IntNormal objects may be created like other objects in GDScript:
 To define and generate the distribution:
 
 `foo.normal(5.0, 1.5)`
+
 `foo.generate(50000)`
 
 To access the data:
 `foo.getvalue(42)`
+
 `foo.getnext()`
 
 ## Future features
