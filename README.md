@@ -63,6 +63,7 @@ To define and generate the distribution:
 `foo.generate(50000)`
 
 To access the data:
+
 `foo.getvalue(42)`
 
 `foo.getnext()`
