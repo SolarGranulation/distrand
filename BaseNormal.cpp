@@ -78,7 +78,7 @@ template <typename T, class C> float BaseNormal<T, C>::dr_boxmuller(const T mu, 
 	return (float)mu + Zu * (float)sigma; // Otherwise return here
 }
 
-template <typename T, class C> void BaseNormal<T, C>::normal(T mean, T deviation) {
+template <typename T, class C> void BaseNormal<T, C>::setparameters(T mean, T deviation) {
 	if(deviation > 0) {
 		mu = mean;
 		sigma = deviation;

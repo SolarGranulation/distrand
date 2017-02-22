@@ -57,8 +57,9 @@ protected:
 	float dr_boxmuller(const T mu, const T sigma);
 
 public:
-	void normal(T mean, T deviation);
 	void generate(int);
+	
+	void setparameters(T mean, T deviation);
 
 	T getvalue(int);
 	T getnext();
