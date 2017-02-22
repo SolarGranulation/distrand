@@ -83,6 +83,7 @@ template <typename T, class C> void BaseNormal<T, C>::setparameters(T mean, T de
 		mu = mean;
 		sigma = deviation;
 		contents.resize(0);
+		bookmark = 0;
 	}
 }
 
@@ -92,6 +93,7 @@ template <typename T, class C> void BaseNormal<T, C>::generate(int quantity) {
 		for(int i=0; i<quantity; ++i) {
 			contents.push_back(dr_boxmuller(mu, sigma));
 		}
+		bookmark = 0;
 	}
 }
 

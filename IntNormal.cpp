@@ -71,6 +71,7 @@ void IntNormal::generate(int count) {
 		for(int i=0; i<count; ++i) {
 			contents.push_back(round(dr_boxmuller(mu, sigma))); // Rounding the boxmuller result.
 		}
+		bookmark = 0;
 	}
 }
 	
