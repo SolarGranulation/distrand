@@ -75,7 +75,7 @@ To access the data:
 
 ## Future features
 
-* Histogram-friendly data in Int* distributions, proving a count of each value.
+* Histogram-friendly data in Int* distributions, giving a count of each value.
 * Heart-cut and dog-food subsets of normal distributions.
 * Bi- and Multi-modal distributions.
 * Weibull distributions.
