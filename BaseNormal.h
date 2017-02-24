@@ -34,8 +34,8 @@
 // GNU Terry Pratchett
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-#ifndef DISTRAND_H
-#define DISTRAND_H
+#ifndef BASENORMAL_H
+#define BASENORMAL_H
 
 #ifdef __ANDROID__
 #include <stdlib.h>
