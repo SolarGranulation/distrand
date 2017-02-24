@@ -42,6 +42,7 @@ void IntNormal::_bind_methods() {
 	ObjectTypeDB::bind_method("generate",&IntNormal::generate);
 	ObjectTypeDB::bind_method("getvalue",&IntNormal::getvalue);
 	ObjectTypeDB::bind_method("getnext",&IntNormal::getnext);
+	ObjectTypeDB::bind_method("getsingle",&IntNormal::getsingle);
 }
 
 int IntNormal::round(float n) {

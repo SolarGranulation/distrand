@@ -26,6 +26,7 @@ create normal (or Gaussian) distributions of random numbers.
 * generate
 * getvalue
 * getnext
+* getsingle
 
 **setparameters( _mean_ , _deviation_ )**
 
@@ -50,6 +51,10 @@ create normal (or Gaussian) distributions of random numbers.
 > Starting at the first element, sequentially returns each value resultant from 
 > the previous generation. If getvalue has been called it continues from there.
 
+**getsingle()**
+
+> Generates and returns a new random number under the currently-defined curve.
+
 #### GDScript Instantiation ####
 
 RealNormal and IntNormal objects may be created like other objects in GDScript:
@@ -64,13 +69,12 @@ To define and generate the distribution:
 
 To access the data:
 
-`foo.getvalue(42)`
+`n = foo.getvalue(42)`
 
-`foo.getnext()`
+`n = foo.getnext()`
 
 ## Future features
 
-* Single-value methods.
 * Histogram-friendly data in Int* distributions, proving a count of each value.
 * Heart-cut and dog-food subsets of normal distributions.
 * Bi- and Multi-modal distributions.

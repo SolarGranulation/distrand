@@ -54,6 +54,7 @@ public:
 	void setparameters(int mean, int deviation) {BaseNormal<int, IntArray>::setparameters(mean, deviation);};
 	int getvalue(int i) {return BaseNormal<int, IntArray>::getvalue(i);};
 	int getnext() {return BaseNormal<int, IntArray>::getnext();};
+	int getsingle() {return BaseNormal<int, IntArray>::getsingle();};
 	
 	IntNormal() : BaseNormal() {};
 };

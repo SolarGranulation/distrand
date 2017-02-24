@@ -63,6 +63,7 @@ public:
 
 	T getvalue(int);
 	T getnext();
+	T getsingle();
 
 	BaseNormal();
 };

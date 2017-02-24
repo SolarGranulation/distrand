@@ -53,6 +53,7 @@ public:
 	void generate(int count) {BaseNormal<float, RealArray>::generate(count);};
 	float getvalue(int i) {return BaseNormal<float, RealArray>::getvalue(i);};
 	float getnext() {return BaseNormal<float, RealArray>::getnext();};
+	float getsingle() {return BaseNormal<float, RealArray>::getsingle();};
 	
 	RealNormal() : BaseNormal() {};
 };

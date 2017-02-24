@@ -117,6 +117,10 @@ template <typename T, class C> T BaseNormal<T, C>::getnext() {
 	ERR_FAIL_COND_V("Out of bounds", 0.0)
 }
 
+template (typename T, class C> T BaseNormal<T, C>::getsingle() {
+	return dr_boxmuller(mu, sigma);
+}
+
 template <typename T, class C> BaseNormal<T, C>::BaseNormal() {
 	Math::randomize();
 	bookmark = 0;

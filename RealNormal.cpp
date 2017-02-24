@@ -43,5 +43,6 @@ void RealNormal::_bind_methods() {
 	ObjectTypeDB::bind_method("generate",&RealNormal::generate);
 	ObjectTypeDB::bind_method("getvalue",&RealNormal::getvalue);
 	ObjectTypeDB::bind_method("getnext",&RealNormal::getnext);
+	ObjectTypeDB::bind_method("getsingle",&RealNormal::getsingle);
 }
 
