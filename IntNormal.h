@@ -39,10 +39,10 @@
 
 #include "BaseNormal.h"
 
-class IntNormal : public BaseNormal<int, IntArray> { // Inherits Reference from base class
-	OBJ_TYPE(IntNormal,Reference);
+class IntNormal : public BaseNormal<int, PoolIntArray> { // Inherits Reference from base class
+	GDCLASS(IntNormal,Reference);
 	
-	using BaseNormal<int, IntArray>::dr_boxmuller;
+	using BaseNormal<int, PoolIntArray>::dr_boxmuller;
 	int round(float);
 	
 protected:
@@ -51,10 +51,10 @@ protected:
 public:
 // 	In order to work in gdscript it seems that these must be explicitly written.
 	void generate(int count); // IntNormal needs to round the boxmuller result.
-	void setparameters(int mean, int deviation) {BaseNormal<int, IntArray>::setparameters(mean, deviation);};
-	int getvalue(int i) {return BaseNormal<int, IntArray>::getvalue(i);};
-	int getnext() {return BaseNormal<int, IntArray>::getnext();};
-	int getsingle() {return BaseNormal<int, IntArray>::getsingle();};
+	void setparameters(int mean, int deviation) {BaseNormal<int, PoolIntArray>::setparameters(mean, deviation);};
+	int getvalue(int i) {return BaseNormal<int, PoolIntArray>::getvalue(i);};
+	int getnext() {return BaseNormal<int, PoolIntArray>::getnext();};
+	int getsingle() {return BaseNormal<int, PoolIntArray>::getsingle();};
 	
 	IntNormal() : BaseNormal() {};
 };

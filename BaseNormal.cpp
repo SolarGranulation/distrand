@@ -104,6 +104,8 @@ template <typename T, class C> T BaseNormal<T, C>::getvalue(int i) {
 	}
 
 	ERR_FAIL_COND_V(i >= contents.size(), 0.0)
+
+    return 0.0;
 }
 
 template <typename T, class C> T BaseNormal<T, C>::getnext() {
@@ -115,6 +117,8 @@ template <typename T, class C> T BaseNormal<T, C>::getnext() {
 	}
 
 	ERR_FAIL_COND_V("Out of bounds", 0.0)
+
+    return 0.0;
 }
 
 template <typename T, class C> T BaseNormal<T, C>::getsingle() {
@@ -129,5 +133,5 @@ template <typename T, class C> BaseNormal<T, C>::BaseNormal() {
 }
 
 // Explicitly create variates to avoid "undefined reference" errors.
-template class BaseNormal<float, RealArray>;
-template class BaseNormal<int, IntArray>;
+template class BaseNormal<float, PoolRealArray>;
+template class BaseNormal<int, PoolIntArray>;

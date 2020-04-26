@@ -39,21 +39,21 @@
 
 #include "BaseNormal.h"
 
-class RealNormal : public BaseNormal<float, RealArray> { // Inherits Reference from base class
-	OBJ_TYPE(RealNormal,Reference);
+class RealNormal : public BaseNormal<float, PoolRealArray> { // Inherits Reference from base class
+	GDCLASS(RealNormal,Reference);
 	
-	using BaseNormal<float, RealArray>::dr_boxmuller;
+	using BaseNormal<float, PoolRealArray>::dr_boxmuller;
 	
 protected:
 	static void _bind_methods();
 	
 public:
 // 	In order to work in gdscript it seems that these must be explicitly written.
-	void setparameters(float mean, float deviation) {BaseNormal<float, RealArray>::setparameters(mean, deviation);};
-	void generate(int count) {BaseNormal<float, RealArray>::generate(count);};
-	float getvalue(int i) {return BaseNormal<float, RealArray>::getvalue(i);};
-	float getnext() {return BaseNormal<float, RealArray>::getnext();};
-	float getsingle() {return BaseNormal<float, RealArray>::getsingle();};
+	void setparameters(float mean, float deviation) {BaseNormal<float, PoolRealArray>::setparameters(mean, deviation);};
+	void generate(int count) {BaseNormal<float, PoolRealArray>::generate(count);};
+	float getvalue(int i) {return BaseNormal<float, PoolRealArray>::getvalue(i);};
+	float getnext() {return BaseNormal<float, PoolRealArray>::getnext();};
+	float getsingle() {return BaseNormal<float, PoolRealArray>::getsingle();};
 	
 	RealNormal() : BaseNormal() {};
 };
