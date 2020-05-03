@@ -1,6 +1,7 @@
-# SCsub
-Import('env')
+#!/usr/bin/env python
 
-module_env = env.Clone()
-module_env.add_source_files(env.modules_sources,"*.cpp")
-module_env.Append(CXXFLAGS=['-O2', '-std=c++98'])
+Import('env')
+Import('env_modules')
+
+env_module = env_modules.Clone()
+env_module.add_source_files(env.modules_sources,"*.cpp")
