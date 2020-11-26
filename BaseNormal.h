@@ -42,12 +42,12 @@
 #else
 #include <cstdlib>
 #endif
-#include "reference.h"
-#include "math_funcs.h" // Godot mathematical functions, including randf.
+#include <core/reference.h>
+#include <core/math/math_funcs.h> // Godot mathematical functions, including randf.
 
 template <typename T, class C>
 class BaseNormal : public Reference {
-	OBJ_TYPE(BaseNormal,Reference);
+	GDCLASS(BaseNormal,Reference);
 
 protected:
 	int bookmark;

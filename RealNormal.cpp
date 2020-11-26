@@ -38,11 +38,11 @@
 #include "RealNormal.h"
 
 void RealNormal::_bind_methods() {
-	ObjectTypeDB::bind_method("normal",&RealNormal::setparameters);
-// 	ObjectTypeDB::bind_method("skew",&BaseNormal::skew);
-	ObjectTypeDB::bind_method("generate",&RealNormal::generate);
-	ObjectTypeDB::bind_method("getvalue",&RealNormal::getvalue);
-	ObjectTypeDB::bind_method("getnext",&RealNormal::getnext);
-	ObjectTypeDB::bind_method("getsingle",&RealNormal::getsingle);
+	ClassDB::bind_method("normal",&RealNormal::setparameters);
+// 	ClassDB::bind_method("skew",&BaseNormal::skew);
+	ClassDB::bind_method("generate",&RealNormal::generate);
+	ClassDB::bind_method("getvalue",&RealNormal::getvalue);
+	ClassDB::bind_method("getnext",&RealNormal::getnext);
+	ClassDB::bind_method("getsingle",&RealNormal::getsingle);
 }
 

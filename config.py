@@ -1,7 +1,9 @@
 # config.py
 
-def can_build(platform):
-	return True
+
+def can_build(env, platform):
+    return True
+
 
 def configure(env):
-	pass
+    pass
